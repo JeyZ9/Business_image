@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <title>User Registration</title>
+    <title>User Registration 265</title>
     <style type="text/css">
         img {
             transition: transform 0.25s ease;
@@ -32,7 +32,7 @@
 
     if (isset($_POST['submit'])) {
         //if ((isset($_POST['customerID']) && isset($_POST['name'])) != null)
-        if (!empty($_POST['customerID']) && !empty($_POST['name'])) {
+        if (!empty($_POST['customerID']) && !empty($_POST['name']) ) {
             echo '<br>' . $_POST['customerID'];
 
             $uploadFile = $_FILES['image']['name'];
@@ -104,9 +104,9 @@
                 <h3>ฟอร์มเพิ่มข้อมูลลูกค้า</h3>
                 <form action="addCustomer_dropdown.php" method="POST" enctype="multipart/form-data">
                     <!-- ศึกษาเพิ่มเติมการอัปโหลดไฟล์ https://www.w3schools.com/php/php_file_upload.asp -->
-                    <input type="text" placeholder="Enter Customer ID" name="customerID">
+                    <input type="text" placeholder="Enter Customer ID" name="customerID" required>
                     <br> <br>
-                    <input type="text" placeholder="Name" name="name">
+                    <input type="text" placeholder="Name" name="name" required>
                     <br> <br>
                     <input type="date" placeholder="Birthdate" name="birthdate">
                     <br> <br>
@@ -124,7 +124,7 @@
                     </select>
                     <br> <br>
                     แนบรูปภาพ:
-                    <input type="file" name="image" id="image">
+                    <input type="file" name="image" id="image" required>
                     <br><br>
                     <input type="submit" value="Submit" name="submit" />
                 </form>
