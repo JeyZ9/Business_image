@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color:aqua; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9));
+    z-index: -99
+}
+
+a {
+    color: inherit;
+}
+
+th,td {
+    border: 0.1px solid #ffffff15;
+    color: whitesmoke;
+    padding: 1rem 2rem;
+    background: rgba(187, 212, 116, 0.7);
+}
+
+th {
+    font-size: 1rem;
+}
+
+
+
+td {
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+td:hover {
+    color: aqua;
+}
