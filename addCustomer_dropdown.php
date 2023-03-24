@@ -24,7 +24,7 @@
 
 <body>
     <?php
-    require '../connect.php';
+    require '______________';
 
     $sql_select = 'select * from country order by CountryCode';
     $stmt_s = $conn->prepare($sql_select);
@@ -124,7 +124,7 @@
                     </select>
                     <br> <br>
                     แนบรูปภาพ:
-                    <input type="file" name="image" id="image" required>
+                    <input type="________" name=__________________ required>
                     <br><br>
                     <input type="submit" value="Submit" name="submit" />
                 </form>

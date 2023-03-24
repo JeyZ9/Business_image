@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="_________________________">
     <title>CRUD Customer Information with Enlarge Image</title>
 
 </head>
@@ -36,11 +36,11 @@
                     </thead>
                     <tbody>
                         <?php
-                        require '../connect.php';
+                        require '______________';
                         $sql =
-                            'SELECT* FROM customer c, country t WHERE c.CountryCode = t.CountryCode';
+                            'SELECT * FROM customer c, country t WHERE _________________________';
                         $stmt = $conn->prepare($sql);
-                        $stmt->execute();
+                        __________________
                         $result = $stmt->fetchAll();
                         foreach ($result as $r) { ?>
                             <tr>
@@ -68,7 +68,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready(function() {
-            $('#customerTable').DataTable();
+            $('#__________________').DataTable();
         });
     </script>
     

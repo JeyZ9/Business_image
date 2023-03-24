@@ -1,6 +1,6 @@
 <?php
 
-require('../connect.php');
+require('______________');
 
 
 $sql = "delete from customer where CustomerID = :customerID";
@@ -16,18 +16,12 @@ if($stml->execute()){
            echo '
         <script type="text/javascript">
         
-        $(document).ready(function(){
+ 
+
+
+
+
         
-            swal({
-                title: "Success!",
-                text: "Successfuly delete customer",
-                type: "success",
-                timer: 2500,
-                showConfirmButton: false
-              }, function(){
-                    window.location.href = "index.php";
-              });
-        });
         
         </script>
         ';
