@@ -115,11 +115,12 @@
                     <input type="number" placeholder="OutStanding debt" name="outstandingDebt">
                     <br> <br>
                     <label>Select a country code</label>
-                    <select name="countrycode">
-                        <?php while ($cc = $stmt_s->fetch(PDO::FETCH_ASSOC)) { ?>
-                            <option value="<?php echo $cc['CountryCode']; ?>">
-                                <?php echo $cc['CountryName']; ?>
-                            </option>
+                    <select name="                ">
+                        <?php  
+
+
+
+
                         <?php } ?>
                     </select>
                     <br> <br>

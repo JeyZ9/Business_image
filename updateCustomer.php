@@ -10,16 +10,13 @@ if (isset($_POST['CustomerID'])) {
     echo 'CustomerID = ' . $CustomerID;
     echo 'Name = ' . $Name;
     echo 'Email = ' . $Email;
- 
+
 
     // $stmt = $conn->prepare("UPDATE  Customer SET Name=:Name, Email=:Email WHERE CustomerID=:CustomerID");
     $stmt = $conn->prepare(
-        'UPDATE customer SET Name=:Name, Email=:Email WHERE CustomerID=:CustomerID'
+        '                                 '
     );
-    $stmt->bindParam(':CustomerID', $CustomerID);
-    $stmt->bindParam(':Name', $Name);
-    $stmt->bindParam(':Email', $Email);
-    $stmt->execute();
+
 
     echo '
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
@@ -48,4 +45,3 @@ if (isset($_POST['CustomerID'])) {
     }
     $conn = null;
 }
-?>
