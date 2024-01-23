@@ -23,77 +23,77 @@
 </head>
 
 <body>
-    <?php
-    require '______________';
+<?php
+require 'connect.php';
 
-    $sql_select = 'select * from country order by CountryCode';
-    $stmt_s = $conn->prepare($sql_select);
-    $stmt_s->execute();
+$sql_select = 'select * from country order by CountryCode';
+$stmt_s = $conn->prepare($sql_select);
+$stmt_s->execute();
 
-    if (isset($_POST['submit'])) {
-        //if ((isset($_POST['customerID']) && isset($_POST['name'])) != null)
-        if (!empty($_POST['customerID']) && !empty($_POST['name']) ) {
-            echo '<br>' . $_POST['customerID'];
+if (isset($_POST['submit'])) {
+    //if ((isset($_POST['customerID']) && isset($_POST['name'])) != null)
+    if (!empty($_POST['customerID']) && !empty($_POST['name'])) {
+        echo '<br>' . $_POST['customerID'];
 
-            $uploadFile = $_FILES['image']['name'];
-            $tmpFile = $_FILES['image']['tmp_name'];
-            echo " upload file = " . $uploadFile;
-            echo " tmp file = " . $tmpFile;
+        $uploadFile = $_FILES['image']['name'];
+        $tmpFile = $_FILES['image']['tmp_name'];
+        echo " upload file = " . $uploadFile;
+        echo " tmp file = " . $tmpFile;
 
-            $sql = "insert into customer 
-							values (:customerID, :Name, :birthdate, :email, :countrycode,
-							:outstandingDebt, :image)";
+        $sql = "insert into customer 
+                        values (:customerID, :Name, :birthdate, :email, :countrycode,
+                        :outstandingDebt, :image)";
 
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':customerID', $_POST['customerID']);
-            $stmt->bindParam(':Name', $_POST['name']);
-            $stmt->bindParam(':birthdate', $_POST['birthdate']);
-            $stmt->bindParam(':email', $_POST['email']);
-            $stmt->bindParam(':countrycode', $_POST['countrycode']);
-            $stmt->bindParam(':outstandingDebt', $_POST['outstandingDebt']);
-            $stmt->bindParam(':image', $uploadFile);
-            echo "image = " . $uploadFile;
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':customerID', $_POST['customerID']);
+        $stmt->bindParam(':Name', $_POST['name']);
+        $stmt->bindParam(':birthdate', $_POST['birthdate']);
+        $stmt->bindParam(':email', $_POST['email']);
+        $stmt->bindParam(':countrycode', $_POST['countrycode']);
+        $stmt->bindParam(':outstandingDebt', $_POST['outstandingDebt']);
+        $stmt->bindParam(':image', $uploadFile);
+        echo "image = " . $uploadFile;
 
 
-            $fullpath = "../image/" . $uploadFile;
-            echo " fullpath = " . $fullpath;
-            move_uploaded_file($tmpFile, $fullpath);
+        $fullpath = "./image/" . $uploadFile;
+        echo " fullpath = " . $fullpath;
+        move_uploaded_file($tmpFile, $fullpath);
 
-            echo '
-                <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">';
+        echo '
+            <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">';
 
-            try {
-                if ($stmt->execute()) :
-                    //$message = 'Successfully add new customer';
-                    echo '
-                        <script type="text/javascript">        
-                        $(document).ready(function(){
-                    
-                            swal({
-                                title: "Success!",
-                                text: "Successfuly add customer",
-                                type: "success",
-                                timer: 2500,
-                                showConfirmButton: false
-                            }, function(){
-                                    window.location.href = "index.php";
-                            });
-                        });                    
-                        </script>
-                    ';
-                else :
-                    $message = 'Fail to add new customer';
-                endif;
-                // echo $message;
-            } catch (PDOException $e) {
-                 echo 'Fail! ' . $e;
-            }
-            $conn = null;
+        try {
+            if ($stmt->execute()) :
+                //$message = 'Successfully add new customer';
+                echo '
+                    <script type="text/javascript">        
+                    $(document).ready(function(){
+                
+                        swal({
+                            title: "Success!",
+                            text: "Successfuly add customer",
+                            type: "success",
+                            timer: 2500,
+                            showConfirmButton: false
+                        }, function(){
+                                window.location.href = "index.php";
+                        });
+                    });                    
+                    </script>
+                ';
+            else :
+                $message = 'Fail to add new customer';
+            endif;
+            // echo $message;
+        } catch (PDOException $e) {
+            echo 'Fail! ' . $e;
         }
+        $conn = null;
     }
-    ?>
+}
+?>
 
 
 
@@ -115,17 +115,16 @@
                     <input type="number" placeholder="OutStanding debt" name="outstandingDebt">
                     <br> <br>
                     <label>Select a country code</label>
-                    <select name="                ">
-                        <?php  
-
-
-
-
+                    <select name="countrycode">
+                        <?php while ($cc = $stmt_s->fetch(PDO::FETCH_ASSOC)) { ?>
+                            <option value="<?php echo $cc['CountryCode']; ?>">
+                                <?php echo $cc['CountryName']; ?>
+                            </option>
                         <?php } ?>
                     </select>
                     <br> <br>
                     แนบรูปภาพ:
-                    <input type="________" name=__________________ required>
+                    <input type="file" name="image" id="image" required>
                     <br><br>
                     <input type="submit" value="Submit" name="submit" />
                 </form>

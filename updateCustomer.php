@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['CustomerID'])) {
-    require '______________';
+    require 'connect.php';
 
     $CustomerID = $_POST['CustomerID'];
     $Name = $_POST['Name'];
@@ -14,8 +14,12 @@ if (isset($_POST['CustomerID'])) {
 
     // $stmt = $conn->prepare("UPDATE  Customer SET Name=:Name, Email=:Email WHERE CustomerID=:CustomerID");
     $stmt = $conn->prepare(
-        '                                 '
+        'UPDATE customer SET Name = :Name, Email = :Email WHERE CustomerID = :CustomerID'
     );
+    $stmt->bindParam(':CustomerID', $CustomerID);
+    $stmt->bindParam(':Name', $Name);
+    $stmt->bindParam(':Email', $Email);
+    $stmt->execute();
 
 
     echo '
